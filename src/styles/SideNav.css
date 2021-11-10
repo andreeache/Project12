@@ -1,0 +1,31 @@
+.sideNav {
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  width: 117px;
+  height: 90vh;
+  justify-content: center;
+  row-gap: 20px;
+}
+
+.sidenNav img {
+  width: 3vw;
+  height: 64px;
+  border-radius: 6px;
+}
+
+.side-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.copyright {
+  color: #ffffff;
+  transform: rotate(-90deg);
+  font-size: 10px;
+  position: absolute;
+  bottom: 7vh;
+}

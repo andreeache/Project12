@@ -1,0 +1,32 @@
+.nutrition-card {
+  width: 258px;
+  height: 124px;
+  background-color: #fbfbfb;
+  margin: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  border-radius: 5px;
+  display: flex;
+}
+
+.nutrition-card img {
+    width: 60px;
+    height: 60px;
+    margin: 32px;
+}
+
+.nutrition-data {
+    margin: 40px 0px;
+    font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 24px;
+}
+
+h6 {
+    margin-top: 0px;
+    color: #74798C;
+    font-size: 14px;
+    line-height: 24px;
+
+}

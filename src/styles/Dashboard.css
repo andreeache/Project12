@@ -1,0 +1,22 @@
+.dashboard{
+    display: flex;
+    
+}
+
+.main-dashboard {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+
+.dashboard-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.charts{
+    max-width: 835px;
+    margin: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+}
