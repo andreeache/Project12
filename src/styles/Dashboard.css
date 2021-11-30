@@ -1,22 +1,30 @@
-.dashboard{
-    display: flex;
-    
+.dashboard {
+  display: flex;
 }
 
 .main-dashboard {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
 }
 
 .dashboard-data {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.charts{
-    max-width: 835px;
-    margin: 40px;
-    display: flex;
-    flex-wrap: nowrap;
+.charts {
+  max-width: 835px;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ch {
+    background: bisque;
+    width: 258px;
+    height: 263px;
+    margin-top: 30px;
 }

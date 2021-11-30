@@ -1,0 +1,25 @@
+.DailyActivity {
+    position: relative;
+    background: #FBFBFB;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    
+}
+
+h4 {
+    position: absolute;
+        top: -2px;
+        left: 20px;
+}
+
+.tooltip {
+    background-color: #E60000;
+    color: white;
+    font-size: 16px;
+    padding: 2.5px;
+}
+
+.tooltip p {
+    padding: 5px;
+}
+
