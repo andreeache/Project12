@@ -6,21 +6,24 @@ import DailyActivity from "./DailyActivity";
 import Objectives from "./Objectives";
 import RadarChartData from "./RadarChart";
 import PieChartGraph from "./PieChart";
+import FetchUserData from "../Data/FetchUserData";
 
 function Dashboard() {
+  let userData = new FetchUserData("18");
+
   return (
     <div className="dashboard">
       <SideNav />
       <div className="main-dashboard">
-        <Header />
+        <Header userData={userData} />
         <div className="dashboard-data">
           <div className="charts">
             <DailyActivity />
             <Objectives />
             <RadarChartData />
-            <PieChartGraph / >
+            <PieChartGraph userData={userData}/>
           </div>
-          <Nutrition />
+          <Nutrition userData={userData} />
         </div>
       </div>
     </div>
