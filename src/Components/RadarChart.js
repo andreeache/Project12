@@ -1,4 +1,5 @@
-import "../styles/RadarChart.css";
+import "../styles/RadarChart.css"
+import React from "react";
 import {
   Radar,
   RadarChart,
@@ -6,20 +7,24 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from "recharts";
-import USER_PERFORMANCE from "./db";
 
-let myData = [];
-for (let i = 0; i < USER_PERFORMANCE[0]["data"].length; i++) {
-  const oldKind = USER_PERFORMANCE[0]["data"][i]["kind"];
 
-  let e = {};
-  e["kind"] = USER_PERFORMANCE[0]["kind"][oldKind];
-  e["kind"] = e["kind"].charAt(0).toUpperCase() + e["kind"].slice(1)
-  e["value"] = USER_PERFORMANCE[0]["data"][i]["value"];
-  myData.push(e);
-}
+class RadarChartData extends React.Component {
+  constructor(props) {
+    super(props);
 
-const RadarChartData = () => {
+    props.userPerformance.setVisitor(this);
+    this.state = { userPerformance: props.userPerformance}
+  }
+
+  render() {
+    let myData = this.state.userPerformance.getUserPerformanceData();
+    for (let i = 0; i < myData.length; i++) {
+      const oldKind = myData[i]["kind"];
+      let newkind = this.state.userPerformance.getUserPerformanceType()[String(oldKind)]
+      myData[i]["newkind"] = newkind.charAt(0).toUpperCase() + newkind.slice(1)
+    } 
+
   return (
     <ResponsiveContainer width="30%" height="40%">
       <RadarChart cx="50%" cy="50%" outerRadius="65%" data={myData} 
@@ -32,7 +37,7 @@ const RadarChartData = () => {
       }}>
         
         <PolarGrid />
-        <PolarAngleAxis dataKey="kind" tick={{
+        <PolarAngleAxis dataKey={"newkind"} tick={{
               fill: "#FFFFFF",
               fontWeight: "500",
               fontSize: "12px",
@@ -40,7 +45,7 @@ const RadarChartData = () => {
             }}/>
         <Radar
           name="Radar"
-          dataKey="value"
+          dataKey={"value"}
           stroke="#FF0101B2"
           fill="#FF0101B2"
           fillOpacity={1}
@@ -49,7 +54,7 @@ const RadarChartData = () => {
         />
       </RadarChart>
     </ResponsiveContainer>
-  );
-};
-
+  )
+}
+}
 export default RadarChartData;

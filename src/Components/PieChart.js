@@ -1,5 +1,5 @@
-import "../styles/PieChart.css";
-import React from "react";
+import "../styles/PieChart.css"
+import React from "react"
 
 import {
   PieChart,

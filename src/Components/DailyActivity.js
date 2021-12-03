@@ -51,11 +51,13 @@ const data = [
 ];
 
 const dayFormatter = (day) => {
-  return parseInt(day.slice(-2));
+  return parseInt(String(day).slice(-2));
 };
 
 const CustomTooltip = ({ payload, active }) => {
-  if (active) {
+  if (active && payload != null) {
+    console.log(payload);
+
     return (
       <>
         <div className="tooltip">
@@ -68,7 +70,19 @@ const CustomTooltip = ({ payload, active }) => {
   return null;
 };
 
-const DailyActivity = () => {
+
+class DailyActivity extends React.Component {
+  constructor(props) {
+    super(props);
+
+    props.activityData.setVisitor(this);
+    this.state = { activityData: props.activityData };
+  }
+
+  render() {
+    let userSession = this.state.activityData.getUserSession();
+
+
   return (
     <div className="DailyActivity">
       <h4>Daily Activity</h4>
@@ -76,7 +90,7 @@ const DailyActivity = () => {
       <BarChart
         width={835}
         height={320}
-        data={data}
+        data={userSession}
         margin={{
           top: 20,
           right: 5,
@@ -125,7 +139,7 @@ const DailyActivity = () => {
         />
       </BarChart>
     </div>
-  );
-};
-
+  )
+}
+}
 export default DailyActivity;

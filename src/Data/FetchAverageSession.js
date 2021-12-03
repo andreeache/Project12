@@ -1,25 +1,28 @@
-import axios from "axios";
+import axios from "axios"
 
 
 class fetchAverageSession {
-    constructor(props) {
-      super(props);
-  
-      //   this.state = { firstName: "" };
-      const userid = "18";
+  constructor(userId) {
+    this.state = { sessions: [], visitor: [] }
   
       axios
-        .get("http://localhost:3000/user/" + userid + "average-sessions")
+        .get("http://localhost:3000/user/" + userId + "/average-sessions")
         .then((response) => this.setInitialState(response))
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
     }
   
     setInitialState(response) {
-      this.setState({
-        sessions: response.data.data.sessions
-      });
+      this.state.sessions = response.data.data.sessions;
+      for (let i = 0; i < this.state.visitor.length; i++) {
+        this.state.visitor[i].setState({ doRefresh: 1 })
+      }
     }
-    getUserSession() {
+
+    setVisitor(visitor) {
+      this.state.visitor.push(visitor)
+    }
+
+    getAverageSession() {
       return this.state.sessions
     }
   }
