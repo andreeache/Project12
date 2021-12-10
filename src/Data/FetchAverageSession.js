@@ -1,7 +1,13 @@
 import axios from "axios"
 
 
+/** This class fetches the avergae session data from the backend service */
+
 class fetchAverageSession {
+  /**
+   *
+   * @param {string} userId contains the user id used to query the backend
+   */
   constructor(userId) {
     this.state = { sessions: [], visitor: [] }
   
@@ -10,6 +16,10 @@ class fetchAverageSession {
         .then((response) => this.setInitialState(response))
         .catch((error) => console.error(error))
     }
+  /**
+   *
+   * @param {axios.request} response an axios response
+   */
   
     setInitialState(response) {
       this.state.sessions = response.data.data.sessions;
