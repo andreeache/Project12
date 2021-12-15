@@ -14,10 +14,7 @@ class fetchActivityData {
       .then((response) => this.setInitialState(response))
       .catch((error) => console.error(error));
   }
-  /**
-   *
-   * @param {axios.request} response an axios response
-   */
+
   setInitialState(response) {
     this.state.sessions = response.data.data.sessions;
     for (let i = 0; i < this.state.visitor.length; i++) {

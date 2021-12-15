@@ -1,5 +1,5 @@
-import "../styles/PieChart.css"
-import React from "react"
+import "../styles/PieChart.css";
+import React from "react";
 
 import {
   PieChart,
@@ -10,7 +10,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
+/**
+ * component for plotting the score chart
+ */
 class PieChartGraph extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +23,13 @@ class PieChartGraph extends React.Component {
     props.userData.setVisitor(this);
   }
 
-  renderLabel({ viewBox }) {
-    const { cx, cy } = viewBox;
+  /**
+   * the label in the middle of the chart
+   * @param {LabelType<TValue, TName>} descriptor the label descriptor
+   * @returns the rendered div
+   */
+  renderLabel(descriptor) {
+    const { cx, cy } = descriptor.viewBox;
     const todayScore = this.state.userData.getTodayScore();
 
     return (
@@ -70,6 +77,11 @@ class PieChartGraph extends React.Component {
     );
   }
 
+  /**
+   * the chart renderer
+   *
+   * @returns the rendered div
+   */
   render() {
     const todayScore = [
       { todayScore: this.state.userData.getTodayScore() },

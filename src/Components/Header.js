@@ -1,14 +1,19 @@
 import "../styles/Header.css";
 import React from "react";
 
+
+/**
+ * A class for the Dashboard header
+ * 
+ */
 class Header extends React.Component {
   constructor(props) {
     super(props);
-
     props.userData.setVisitor(this);
     this.state = { userData: props.userData };
   }
 
+  /** the object render function */
   render() {
     let userName = this.state.userData.getFirstName();
     return (

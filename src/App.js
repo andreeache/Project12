@@ -2,14 +2,14 @@ import Dashboard from "./Components/Dashboard";
 import TopNav from "./Components/TopNav";
 import UserError from "./Components/UserError";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
+/**
+ * The main react entrypoint
+ * @returns the React router
+ */
 function App() {
   return (
     <Router>

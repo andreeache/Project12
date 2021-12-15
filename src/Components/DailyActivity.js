@@ -8,30 +8,32 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Label,
-  ReferenceArea,
 } from "recharts";
 
 // @ts-check
 
-
-/** This is a description of the day formater function. 
+/** This is a description of the day formater function.
  * @param {integer} day data format from the backend
  * @return {integer} displays data according to the current day of the month
-*/
+ */
 const dayFormatter = (day) => {
   return parseInt(String(day).slice(-2));
 };
 
-const CustomTooltip = ({ payload, active }) => {
-  if (active && payload != null) {
-    console.log(payload);
+/**
+ * A tooltip for the DailyActivity graph, containing the weight and calories
+ * @param {ContentType<TValue, TName>} tooltipDescriptor the tooltip descriptor containing the payload 
+ * @returns a div with the tooltip
+ */
+const CustomTooltip = (tooltipDescriptor) => {
+  if (tooltipDescriptor != null && tooltipDescriptor.active && tooltipDescriptor.payload != null) {
+    console.log(tooltipDescriptor.payload);
 
     return (
       <>
         <div className="tooltip">
-          <p>{payload[0].value}kg</p>
-          <p>{payload[1].value}Kcal</p>
+          <p>{tooltipDescriptor.payload[0].value}kg</p>
+          <p>{tooltipDescriptor.payload[1].value}Kcal</p>
         </div>
       </>
     );

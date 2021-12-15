@@ -4,6 +4,10 @@ import swimming from "../assets/icon-swimming.png";
 import cycling from "../assets/icon-cycling.png";
 import lifting from "../assets/icon-lifting.png";
 
+/**
+ * Side navigation bar, implemented as a function
+ * @returns the DIV to render
+ */
 const SideNav = () => {
   return (
     <div className="sideNav">

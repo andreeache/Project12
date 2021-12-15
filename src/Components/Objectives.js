@@ -5,51 +5,25 @@ import {
   LineChart,
   Line,
   XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
-  Brush,
-  AreaChart,
-  Area,
   ResponsiveContainer,
 } from "recharts";
-const data = [
-  {
-    day: 1,
-    sessionLength: 30,
-  },
-  {
-    day: 2,
-    sessionLength: 23,
-  },
-  {
-    day: 3,
-    sessionLength: 45,
-  },
-  {
-    day: 4,
-    sessionLength: 50,
-  },
-  {
-    day: 5,
-    sessionLength: 0,
-  },
-  {
-    day: 6,
-    sessionLength: 0,
-  },
-  {
-    day: 7,
-    sessionLength: 60,
-  },
-];
 
+/**
+ * converts day of month to day of week
+ * 
+ * @param {int} day represents the day of the month 
+ * @returns the initial letter in the day of the week
+ */
 const dayOfWeekFormatter = (day) => {
   const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
   return daysOfWeek[(day - 1) % 7];
 };
 
+/**
+ * the object that renders the objectives section 
+ */
 class Objectives extends React.Component {
   constructor(props) {
     super(props);
@@ -58,12 +32,17 @@ class Objectives extends React.Component {
     this.state = { averageSession: props.averageSession };
   }
 
-  CustomTooltip({ payload, active }) {
-    if (active) {
+  /**
+   * 
+   * @param {ContentType<TValue, TName>} descriptor that contains the tooltip payload 
+   * @returns the div with duration
+   */
+  CustomTooltip(descriptor) {
+    if (descriptor.active) {
       return (
         <>
           <div className="average-speed">
-            <p>{payload[0].value}min</p>
+            <p>{descriptor.payload[0].value}min</p>
           </div>
         </>
       );
@@ -71,6 +50,11 @@ class Objectives extends React.Component {
     return null;
   }
 
+  /**
+   * the render function
+   * 
+   * @returns the rendered div
+   */
   render() {
     let averageSession = this.state.averageSession.getAverageSession()
 

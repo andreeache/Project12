@@ -8,7 +8,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
+/**
+ * Radar chart for all the performance measurements
+ */
 class RadarChartData extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,11 @@ class RadarChartData extends React.Component {
     this.state = { userPerformance: props.userPerformance}
   }
 
+  /**
+   * the radar chart render method
+   * 
+   * @returns the rendered chart
+   */
   render() {
     let myData = this.state.userPerformance.getUserPerformanceData();
     for (let i = 0; i < myData.length; i++) {

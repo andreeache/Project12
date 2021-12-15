@@ -12,7 +12,11 @@ import fetchAverageSession from "../Data/FetchAverageSession";
 import fetchUserPerformance from "../Data/FetchUserPerformance";
 import { useParams } from "react-router-dom";
 
-
+/**
+ * The main view port
+ * 
+ * @returns a div with the main dashboard and the sidebar navigation
+ */
 function Dashboard() {
   const { userId } = useParams();
 

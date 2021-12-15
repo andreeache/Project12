@@ -1,6 +1,11 @@
 import "../styles/TopNav.css";
 import Logo from "../assets/Logo.png";
 
+/**
+ * top navigation bar
+ * 
+ * @returns a div representing the top navigation bar
+ */
 const TopNav = () => {
   return (
     <div className="topNav">

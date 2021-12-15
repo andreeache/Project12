@@ -5,7 +5,9 @@ import proteins from "../assets/protein-icon.png";
 import carbs from "../assets/carbs-icon.png";
 import lipids from "../assets/fat-icon.png";
 
-
+/**
+ * class that renders all the nutrition related information (the right side of the page)
+ */
 class Nutrition extends React.Component {
   constructor(props) {
     super(props)
@@ -14,6 +16,10 @@ class Nutrition extends React.Component {
     this.state = { userData: props.userData }
   }
 
+  /**
+   * the render function
+   * @returns a div containing the nutrition section
+   */
   render() {
     let calorieCount = this.state.userData.getCalorieCount()
     let proteinCount = this.state.userData.getProteinsCount()
