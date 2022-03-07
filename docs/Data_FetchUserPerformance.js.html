@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Data/FetchUserPerformance.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Data/FetchUserPerformance.js</h1>
 
     
 
@@ -28,48 +28,62 @@
         <article>
             <pre class="prettyprint source linenums"><code>import axios from "axios";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
+/**
+ * class used to fetch the performance data for a user from the backend
+ */
+class fetchUserPerformance {
   /**
-   *
-   * @param {string} userId contains the user id used to query the backend
+   * 
+   * @param {string} userId the id of the user 
    */
   constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
+    this.state = { visitor: [], data: [], kind: [] }
+
+    //   this.state = { firstName: "" };
+    const userid = "18";
 
     axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
+      .get("http://localhost:3000/user/" + userid + "/performance")
       .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
   }
 
   setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
+    this.state.data = response.data.data.data
+    this.state.kind = response.data.data.kind
     for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
+      this.state.visitor[i].setState({ doRefresh: 1 })
     }
   }
 
   /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
+   * adds a visitor to the list
+   * @param {React.Component} visitor 
    */
   setVisitor(visitor) {
-    this.state.visitor.push(visitor);
+    this.state.visitor.push(visitor)
   }
 
   /**
-   * gets the user session
-   *
-   * @returns the user session
+   * gets the kind of performance measure
+   * 
+   * @returns kind of performance measure
    */
-  getUserSession() {
-    return this.state.sessions;
+  getUserPerformanceType() {
+    return this.state.kind;
+  }
+
+  /**
+   * gets the performance data
+   * 
+   * @returns the performance data
+   */
+  getUserPerformanceData() {
+    return this.state.data;
   }
 }
 
-export default fetchActivityData;
+export default fetchUserPerformance;
 </code></pre>
         </article>
     </section>

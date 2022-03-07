@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Data/FetchAverageSession.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Data/FetchAverageSession.js</h1>
 
     
 
@@ -27,9 +27,11 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import axios from "axios";
+import React from "react";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
+/** This class fetches the avergae session data from the backend service */
+
+class fetchAverageSession {
   /**
    *
    * @param {string} userId contains the user id used to query the backend
@@ -38,7 +40,7 @@ class fetchActivityData {
     this.state = { sessions: [], visitor: [] };
 
     axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
+      .get("http://localhost:3000/user/" + userId + "/average-sessions")
       .then((response) => this.setInitialState(response))
       .catch((error) => console.error(error));
   }
@@ -51,25 +53,24 @@ class fetchActivityData {
   }
 
   /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
+   * adds a visitor to the list
+   * @param {React.Component} visitor
    */
   setVisitor(visitor) {
     this.state.visitor.push(visitor);
   }
 
   /**
-   * gets the user session
+   * get the session array
    *
-   * @returns the user session
+   * @returns returns the session arraylist
    */
-  getUserSession() {
+  getAverageSession() {
     return this.state.sessions;
   }
 }
 
-export default fetchActivityData;
+export default fetchAverageSession;
 </code></pre>
         </article>
     </section>

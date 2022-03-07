@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Components/Header.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Components/Header.js</h1>
 
     
 
@@ -26,50 +26,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import "../styles/Header.css";
+import React from "react";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
-  /**
-   *
-   * @param {string} userId contains the user id used to query the backend
-   */
-  constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
 
-    axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
-      .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
+/**
+ * A class for the Dashboard header
+ * 
+ */
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    props.userData.setVisitor(this);
+    this.state = { userData: props.userData };
   }
 
-  setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
-    for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
-    }
-  }
-
-  /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
-   */
-  setVisitor(visitor) {
-    this.state.visitor.push(visitor);
-  }
-
-  /**
-   * gets the user session
-   *
-   * @returns the user session
-   */
-  getUserSession() {
-    return this.state.sessions;
+  /** the object render function */
+  render() {
+    let userName = this.state.userData.getFirstName();
+    return (
+      &lt;div>
+        &lt;div className="header">
+          &lt;h1 className="header-text">
+            Hello &lt;span className="user-name">{userName}&lt;/span>
+          &lt;/h1>
+          &lt;p className="user-message">
+            Congratulations! You reached yesterday’s goal! 👏
+          &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    );
   }
 }
-
-export default fetchActivityData;
+export default Header;
 </code></pre>
         </article>
     </section>

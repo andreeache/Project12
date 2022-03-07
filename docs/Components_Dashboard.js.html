@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Components/Dashboard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Components/Dashboard.js</h1>
 
     
 
@@ -26,50 +26,54 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import "../styles/Dashboard.css";
+import SideNav from "./SideNav";
+import Header from "./Header";
+import Nutrition from "./Nutrition";
+import DailyActivity from "./DailyActivity";
+import Objectives from "./Objectives";
+import RadarChartData from "./RadarChart";
+import PieChartGraph from "./PieChart";
+import FetchUserData from "../Data/FetchUserData";
+import fetchActivityData from "../Data/FetchActivityData";
+import fetchAverageSession from "../Data/FetchAverageSession";
+import fetchUserPerformance from "../Data/FetchUserPerformance";
+import { useParams } from "react-router-dom";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
-  /**
-   *
-   * @param {string} userId contains the user id used to query the backend
-   */
-  constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
+/**
+ * The main view port
+ * 
+ * @returns a div with the main dashboard and the sidebar navigation
+ */
+function Dashboard() {
+  const { userId } = useParams();
 
-    axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
-      .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
-  }
+  let userData = new FetchUserData(userId);
+  let activityData = new fetchActivityData(userId);
+  let averageSession = new fetchAverageSession(userId);
+  let userPerformance = new fetchUserPerformance(userId);
 
-  setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
-    for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
-    }
-  }
-
-  /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
-   */
-  setVisitor(visitor) {
-    this.state.visitor.push(visitor);
-  }
-
-  /**
-   * gets the user session
-   *
-   * @returns the user session
-   */
-  getUserSession() {
-    return this.state.sessions;
-  }
+  return (
+    &lt;div className="dashboard">
+      &lt;SideNav />
+      &lt;div className="main-dashboard">
+        &lt;Header userData={userData} />
+        &lt;div className="dashboard-data">
+          &lt;div className="charts">
+            &lt;DailyActivity activityData={activityData} />
+            &lt;Objectives averageSession={averageSession} />
+            &lt;RadarChartData userPerformance={userPerformance} />
+            &lt;PieChartGraph userData={userData} />
+          &lt;/div>
+          &lt;Nutrition userData={userData} />
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  );
 }
 
-export default fetchActivityData;
+export default Dashboard;
+
 </code></pre>
         </article>
     </section>

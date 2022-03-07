@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Components/TopNav.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Components/TopNav.js</h1>
 
     
 
@@ -26,50 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import "../styles/TopNav.css";
+import Logo from "../assets/Logo.png";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
-  /**
-   *
-   * @param {string} userId contains the user id used to query the backend
-   */
-  constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
+/**
+ * top navigation bar
+ * 
+ * @returns a div representing the top navigation bar
+ */
+const TopNav = () => {
+  return (
+    &lt;div className="topNav">
+      
+      &lt;div className="logo">
+          &lt;img src={Logo} alt="SportSee" />   
+      &lt;/div>
 
-    axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
-      .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
-  }
+      &lt;ul className="tabs">
+        &lt;li className="tab-link">
+          Home
+        &lt;/li>
+        &lt;li className="tab-link">
+          Profile
+        &lt;/li>
+        &lt;li className="tab-link">
+          Settings
+        &lt;/li>
+        &lt;li className="tab-link">
+          Community
+        &lt;/li>
+        
+      &lt;/ul>
+    &lt;/div>
+  );
+};
 
-  setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
-    for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
-    }
-  }
-
-  /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
-   */
-  setVisitor(visitor) {
-    this.state.visitor.push(visitor);
-  }
-
-  /**
-   * gets the user session
-   *
-   * @returns the user session
-   */
-  getUserSession() {
-    return this.state.sessions;
-  }
-}
-
-export default fetchActivityData;
+export default TopNav;
 </code></pre>
         </article>
     </section>

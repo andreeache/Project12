@@ -18,5 +18,5 @@ This repo contains a React user sport analysis dashboard page, fetching data fro
 
 
 
-### rest of the coments
+### 
 

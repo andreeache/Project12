@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/PieChart.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/PieChart.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import "../styles/PieChart.css";
+import React from "react";
+
+import {
+  PieChart,
+  Pie,
+  Legend,
+  Label,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
+
+/**
+ * component for plotting the score chart
+ */
+class PieChartGraph extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // fix this so it doesn't point to the axios instance anymore
+    this.renderLabel = this.renderLabel.bind(this);
+    this.state = { userData: props.userData };
+    props.userData.setVisitor(this);
+  }
+
+  /**
+   * the label in the middle of the chart
+   * @param {LabelType&lt;TValue, TName>} descriptor the label descriptor
+   * @returns the rendered div
+   */
+  renderLabel(descriptor) {
+    const { cx, cy } = descriptor.viewBox;
+    const todayScore = this.state.userData.getTodayScore();
+
+    return (
+      &lt;>
+        {" "}
+        &lt;text x={cx - 20} y={cy - 5}>
+          &lt;tspan
+            style={{
+              fontSize: "32px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+              margin: { top: "100px" },
+            }}
+          >
+            {todayScore * 100}%
+          &lt;/tspan>
+        &lt;/text>
+        &lt;text x={cx - 20} y={cy + 15}>
+          &lt;tspan
+            style={{
+              fontSize: "16px",
+              fill: "grey",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+              margin: { top: "100px" },
+            }}
+          >
+            of your
+          &lt;/tspan>
+        &lt;/text>
+        &lt;text x={cx - 20} y={cy + 35}>
+          &lt;tspan
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              fill: "grey",
+              fontFamily: "Roboto",
+              margin: { top: "100px" },
+            }}
+          >
+            goal
+          &lt;/tspan>
+        &lt;/text>
+      &lt;/>
+    );
+  }
+
+  /**
+   * the chart renderer
+   *
+   * @returns the rendered div
+   */
+  render() {
+    const todayScore = [
+      { todayScore: this.state.userData.getTodayScore() },
+      { todayScore: 1 - this.state.userData.getTodayScore() },
+    ];
+
+    return (
+      &lt;ResponsiveContainer width="30%" height="40%">
+        &lt;PieChart width={730} height={250}>
+          &lt;Legend
+            iconSize={0}
+            align="left"
+            verticalAlign="top"
+            payload={[
+              {
+                value: "Score",
+                type: "line",
+                id: "ID01",
+                color: "#20253A",
+                fontSize: "22px",
+              },
+            ]}
+          />
+          &lt;Pie
+            data={todayScore}
+            cx="50%"
+            cy="50%"
+            dataKey="todayScore"
+            innerRadius={70}
+            outerRadius={80}
+            startAngle={90}
+            endAngle={540}
+          >
+            &lt;Cell key={`cell-1`} fill="#FF0000" />
+            &lt;Cell key={`cell`} fill="#f3f6f9" />
+
+            &lt;Label content={this.renderLabel} />
+          &lt;/Pie>
+        &lt;/PieChart>
+      &lt;/ResponsiveContainer>
+    );
+  }
+}
+
+export default PieChartGraph;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DailyActivity.html">DailyActivity</a></li><li><a href="fetchActivityData.html">fetchActivityData</a></li><li><a href="fetchAverageSession.html">fetchAverageSession</a></li><li><a href="FetchUserData.html">FetchUserData</a></li><li><a href="fetchUserPerformance.html">fetchUserPerformance</a></li><li><a href="Header.html">Header</a></li><li><a href="Nutrition.html">Nutrition</a></li><li><a href="Objectives.html">Objectives</a></li><li><a href="PieChartGraph.html">PieChartGraph</a></li><li><a href="RadarChartData.html">RadarChartData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#dayFormatter">dayFormatter</a></li><li><a href="global.html#dayOfWeekFormatter">dayOfWeekFormatter</a></li><li><a href="global.html#SideNav">SideNav</a></li><li><a href="global.html#TopNav">TopNav</a></li><li><a href="global.html#UserError">UserError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 15 2021 16:10:50 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

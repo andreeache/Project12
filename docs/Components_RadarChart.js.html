@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Components/RadarChart.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Components/RadarChart.js</h1>
 
     
 
@@ -26,50 +26,73 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import "../styles/RadarChart.css"
+import React from "react";
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  ResponsiveContainer,
+} from "recharts";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
-  /**
-   *
-   * @param {string} userId contains the user id used to query the backend
-   */
-  constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
+/**
+ * Radar chart for all the performance measurements
+ */
+class RadarChartData extends React.Component {
+  constructor(props) {
+    super(props);
 
-    axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
-      .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
-  }
-
-  setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
-    for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
-    }
+    props.userPerformance.setVisitor(this);
+    this.state = { userPerformance: props.userPerformance}
   }
 
   /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
+   * the radar chart render method
+   * 
+   * @returns the rendered chart
    */
-  setVisitor(visitor) {
-    this.state.visitor.push(visitor);
-  }
+  render() {
+    let myData = this.state.userPerformance.getUserPerformanceData();
+    for (let i = 0; i &lt; myData.length; i++) {
+      const oldKind = myData[i]["kind"];
+      let newkind = this.state.userPerformance.getUserPerformanceType()[String(oldKind)]
+      myData[i]["newkind"] = newkind.charAt(0).toUpperCase() + newkind.slice(1)
+    } 
 
-  /**
-   * gets the user session
-   *
-   * @returns the user session
-   */
-  getUserSession() {
-    return this.state.sessions;
-  }
+  return (
+    &lt;ResponsiveContainer width="30%" height="40%">
+      &lt;RadarChart cx="50%" cy="50%" outerRadius="65%" data={myData} 
+      style={{
+        backgroundColor: "#282D30",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.0212249)",
+        borderRadius: "5px",
+  
+        
+      }}>
+        
+        &lt;PolarGrid />
+        &lt;PolarAngleAxis dataKey={"newkind"} tick={{
+              fill: "#FFFFFF",
+              fontWeight: "500",
+              fontSize: "12px",
+              lineHeigt: "24px",
+            }}/>
+        &lt;Radar
+          name="Radar"
+          dataKey={"value"}
+          stroke="#FF0101B2"
+          fill="#FF0101B2"
+          fillOpacity={1}
+          
+        
+        />
+      &lt;/RadarChart>
+    &lt;/ResponsiveContainer>
+  )
 }
-
-export default fetchActivityData;
+}
+export default RadarChartData;
 </code></pre>
         </article>
     </section>

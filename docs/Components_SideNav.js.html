@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data/FetchActivityData.js</title>
+    <title>JSDoc: Source: Components/SideNav.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data/FetchActivityData.js</h1>
+    <h1 class="page-title">Source: Components/SideNav.js</h1>
 
     
 
@@ -26,50 +26,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import "../styles/SideNav.css";
+import resting from "../assets/icon-resting.png";
+import swimming from "../assets/icon-swimming.png";
+import cycling from "../assets/icon-cycling.png";
+import lifting from "../assets/icon-lifting.png";
 
-/** This class fetches daily activity data from the backend service */
-class fetchActivityData {
-  /**
-   *
-   * @param {string} userId contains the user id used to query the backend
-   */
-  constructor(userId) {
-    this.state = { sessions: [], visitor: [] };
+/**
+ * Side navigation bar, implemented as a function
+ * @returns the DIV to render
+ */
+const SideNav = () => {
+  return (
+    &lt;div className="sideNav">
+      &lt;img src={resting} alt="Resting icon" className="side-icon" />
+      &lt;img src={swimming} alt="Swimming icon" className="side-icon" />
+      &lt;img src={cycling} alt="Cycling icon" className="side-icon" />
+      &lt;img src={lifting} alt="Weightlifting icon" className="side-icon" />
+      &lt;div className="copyright">Copyright, SportSee 2020&lt;/div>
+    &lt;/div>
+  );
+};
 
-    axios
-      .get("http://localhost:3000/user/" + userId + "/activity")
-      .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
-  }
-
-  setInitialState(response) {
-    this.state.sessions = response.data.data.sessions;
-    for (let i = 0; i &lt; this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
-    }
-  }
-
-  /**
-   * adds a visitor to the visitor list
-   *
-   * @param {React.Component} visitor the visitor
-   */
-  setVisitor(visitor) {
-    this.state.visitor.push(visitor);
-  }
-
-  /**
-   * gets the user session
-   *
-   * @returns the user session
-   */
-  getUserSession() {
-    return this.state.sessions;
-  }
-}
-
-export default fetchActivityData;
+export default SideNav;
 </code></pre>
         </article>
     </section>

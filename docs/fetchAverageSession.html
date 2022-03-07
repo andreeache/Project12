@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DailyActivity</title>
+    <title>JSDoc: Class: fetchAverageSession</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DailyActivity</h1>
+    <h1 class="page-title">Class: fetchAverageSession</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DailyActivity<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>fetchAverageSession<span class="signature">(userId)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>A class for Daily Activities management</p></div>
+            <div class="class-description"><p>This class fetches the avergae session data from the backend service</p></div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="DailyActivity"><span class="type-signature"></span>new DailyActivity<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="fetchAverageSession"><span class="type-signature"></span>new fetchAverageSession<span class="signature">(userId)</span><span class="type-signature"></span></h4>
     
 
     
@@ -85,10 +85,15 @@
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>userId</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
             
             </td>
 
@@ -96,7 +101,7 @@
 
             
 
-            <td class="description last"><p>containing activityData</p></td>
+            <td class="description last"><p>contains the user id used to query the backend</p></td>
         </tr>
 
     
@@ -137,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Components_DailyActivity.js.html">Components/DailyActivity.js</a>, <a href="Components_DailyActivity.js.html#line45">line 45</a>
+        <a href="Data_FetchAverageSession.js.html">Data/FetchAverageSession.js</a>, <a href="Data_FetchAverageSession.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -193,7 +198,7 @@
     
 
     
-    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getAverageSession"><span class="type-signature"></span>getAverageSession<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -201,7 +206,7 @@
 
 
 <div class="description">
-    <p>the object render function</p>
+    <p>get the session array</p>
 </div>
 
 
@@ -245,7 +250,154 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Components_DailyActivity.js.html">Components/DailyActivity.js</a>, <a href="Components_DailyActivity.js.html#line57">line 57</a>
+        <a href="Data_FetchAverageSession.js.html">Data/FetchAverageSession.js</a>, <a href="Data_FetchAverageSession.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>returns the session arraylist</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setVisitor"><span class="type-signature"></span>setVisitor<span class="signature">(visitor)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>adds a visitor to the list</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>visitor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">React.Component</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_FetchAverageSession.js.html">Data/FetchAverageSession.js</a>, <a href="Data_FetchAverageSession.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
