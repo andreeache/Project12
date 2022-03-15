@@ -29,7 +29,7 @@ class Objectives extends React.Component {
     super(props);
 
     props.averageSession.setVisitor(this);
-    this.state = { averageSession: props.averageSession };
+    this.state = { averageSession: props.averageSession, sessions: [] };
   }
 
   /**
@@ -56,7 +56,7 @@ class Objectives extends React.Component {
    * @returns the rendered div
    */
   render() {
-    let averageSession = this.state.averageSession.getAverageSession()
+    let averageSession = this.state.sessions
 
     return (
       <ResponsiveContainer width="30%" height="40%">

@@ -1,28 +1,30 @@
-import axios from "axios";
+import axios from "axios"
 
 /**
  * class used to fetch the user data from the backend service
  */
 class FetchUserData {
   constructor(userId) {
-    this.state = { firstName: "", todayScore: 0, visitor: [] };
+    this.firstName = ""
+    this.todayScore = 0
+    this.visitor = []
 
     axios
       .get("http://localhost:3000/user/" + userId)
       .then((response) => this.setInitialState(response))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
   }
 
   setInitialState(response) {
-    this.state.firstName = response.data.data.userInfos.firstName;
-    this.state.calorieCount = response.data.data.keyData.calorieCount;
-    this.state.proteinCount = response.data.data.keyData.proteinCount;
-    this.state.carbohydrateCount = response.data.data.keyData.carbohydrateCount;
-    this.state.lipidCount = response.data.data.keyData.lipidCount;
-    this.state.todayScore = response.data.data.score;
+    this.firstName = response.data.data.userInfos.firstName
+    this.calorieCount = response.data.data.keyData.calorieCount
+    this.proteinCount = response.data.data.keyData.proteinCount
+    this.carbohydrateCount = response.data.data.keyData.carbohydrateCount
+    this.lipidCount = response.data.data.keyData.lipidCount
+    this.todayScore = response.data.data.score
 
-    for (let i = 0; i < this.state.visitor.length; i++) {
-      this.state.visitor[i].setState({ doRefresh: 1 });
+    for (let i = 0; i < this.visitor.length; i++) {
+      this.visitor[i].setState({ doRefresh: 1 })
     }
   }
 
@@ -31,7 +33,7 @@ class FetchUserData {
    * @param {React.Component} visitor
    */
   setVisitor(visitor) {
-    this.state.visitor.push(visitor);
+    this.visitor.push(visitor)
   }
 
   /**
@@ -39,7 +41,7 @@ class FetchUserData {
    * @returns the first name
    */
   getFirstName() {
-    return this.state.firstName;
+    return this.firstName
   }
 
   /**
@@ -48,7 +50,7 @@ class FetchUserData {
    * @returns the number of calories
    */
   getCalorieCount() {
-    return this.state.calorieCount;
+    return this.calorieCount
   }
   /**
    * gets number of proteins
@@ -56,7 +58,7 @@ class FetchUserData {
    * @returns the number of proteins
    */
   getProteinsCount() {
-    return this.state.proteinCount;
+    return this.proteinCount
   }
   /**
    * get number of carbs
@@ -64,7 +66,7 @@ class FetchUserData {
    * @returns the number of carbs
    */
   getCarbohydrateCount() {
-    return this.state.carbohydrateCount;
+    return this.carbohydrateCount
   }
   /**
    * get number of lipids
@@ -72,7 +74,7 @@ class FetchUserData {
    * @returns the number of lipids
    */
   getLipidCount() {
-    return this.state.lipidCount;
+    return this.lipidCount
   }
   /**
    * get the current day score
@@ -80,8 +82,8 @@ class FetchUserData {
    * @returns the current day score
    */
   getTodayScore() {
-    return this.state.todayScore;
+    return this.todayScore
   }
 }
 
-export default FetchUserData;
+export default FetchUserData
