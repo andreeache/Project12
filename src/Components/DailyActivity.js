@@ -1,5 +1,5 @@
-import "../styles/DailyActivity.css";
-import React from "react";
+import "../styles/DailyActivity.css"
+import React from "react"
 import {
   BarChart,
   Bar,
@@ -8,7 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts";
+} from "recharts"
 
 // @ts-check
 
@@ -17,17 +17,21 @@ import {
  * @return {integer} displays data according to the current day of the month
  */
 const dayFormatter = (day) => {
-  return parseInt(String(day).slice(-2));
-};
+  return parseInt(String(day).slice(-2))
+}
 
 /**
  * A tooltip for the DailyActivity graph, containing the weight and calories
- * @param {ContentType<TValue, TName>} tooltipDescriptor the tooltip descriptor containing the payload 
+ * @param {ContentType<TValue, TName>} tooltipDescriptor the tooltip descriptor containing the payload
  * @returns a div with the tooltip
  */
 const CustomTooltip = (tooltipDescriptor) => {
-  if (tooltipDescriptor != null && tooltipDescriptor.active && tooltipDescriptor.payload != null) {
-    console.log(tooltipDescriptor.payload);
+  if (
+    tooltipDescriptor != null &&
+    tooltipDescriptor.active &&
+    tooltipDescriptor.payload != null
+  ) {
+    console.log(tooltipDescriptor.payload)
 
     return (
       <>
@@ -36,10 +40,10 @@ const CustomTooltip = (tooltipDescriptor) => {
           <p>{tooltipDescriptor.payload[1].value}Kcal</p>
         </div>
       </>
-    );
+    )
   }
-  return null;
-};
+  return null
+}
 
 /** A class for Daily Activities management */
 class DailyActivity extends React.Component {
@@ -47,15 +51,15 @@ class DailyActivity extends React.Component {
    * @param  {} props containing activityData
    */
   constructor(props) {
-    super(props);
+    super(props)
 
-    props.activityData.setVisitor(this);
-    this.state = { activityData: props.activityData };
+    props.activityData.setVisitor(this)
+    this.state = { activityData: props.activityData, sessions: [] }
   }
 
   /** the object render function */
   render() {
-    let userSession = this.state.activityData.getUserSession();
+    let userSession = this.state.sessions
 
     return (
       <div className="DailyActivity">
@@ -113,7 +117,7 @@ class DailyActivity extends React.Component {
           />
         </BarChart>
       </div>
-    );
+    )
   }
 }
-export default DailyActivity;
+export default DailyActivity
