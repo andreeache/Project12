@@ -1,5 +1,7 @@
 import "../styles/RadarChart.css"
 import React from "react"
+import PropTypes from "prop-types"
+
 import {
   Radar,
   RadarChart,
@@ -17,7 +19,6 @@ class RadarChartData extends React.Component {
 
     props.userPerformance.setVisitor(this)
     this.state = {
-      userPerformance: props.userPerformance,
       performanceType: [],
       performanceData: [],
     }
@@ -71,4 +72,10 @@ class RadarChartData extends React.Component {
     )
   }
 }
+
+RadarChartData.propTypes = {
+  performanceType: PropTypes.array,
+  performanceData: PropTypes.array,
+}
+
 export default RadarChartData

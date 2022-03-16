@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 
 /** This class fetches the avergae session data from the backend service */
 

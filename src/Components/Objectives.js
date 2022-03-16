@@ -1,5 +1,6 @@
 import "../styles/Objectives.css"
 import React from "react"
+import PropTypes from "prop-types"
 
 import {
   LineChart,
@@ -8,33 +9,33 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
+} from "recharts"
 
 /**
  * converts day of month to day of week
- * 
- * @param {int} day represents the day of the month 
+ *
+ * @param {int} day represents the day of the month
  * @returns the initial letter in the day of the week
  */
 const dayOfWeekFormatter = (day) => {
-  const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
-  return daysOfWeek[(day - 1) % 7];
-};
+  const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"]
+  return daysOfWeek[(day - 1) % 7]
+}
 
 /**
- * the object that renders the objectives section 
+ * the object that renders the objectives section
  */
 class Objectives extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    props.averageSession.setVisitor(this);
-    this.state = { averageSession: props.averageSession, sessions: [] };
+    props.averageSession.setVisitor(this)
+    this.state = { sessions: [] }
   }
 
   /**
-   * 
-   * @param {ContentType<TValue, TName>} descriptor that contains the tooltip payload 
+   *
+   * @param {ContentType<TValue, TName>} descriptor that contains the tooltip payload
    * @returns the div with duration
    */
   CustomTooltip(descriptor) {
@@ -45,14 +46,14 @@ class Objectives extends React.Component {
             <p>{descriptor.payload[0].value}min</p>
           </div>
         </>
-      );
+      )
     }
-    return null;
+    return null
   }
 
   /**
    * the render function
-   * 
+   *
    * @returns the rendered div
    */
   render() {
@@ -120,7 +121,11 @@ class Objectives extends React.Component {
           />
         </LineChart>
       </ResponsiveContainer>
-    );
+    )
   }
+}
+
+Objectives.propTypes = {
+  sessions: PropTypes.array,
 }
 export default Objectives

@@ -1,4 +1,5 @@
 import "../styles/DailyActivity.css"
+import PropTypes from "prop-types"
 import React from "react"
 import {
   BarChart,
@@ -54,7 +55,7 @@ class DailyActivity extends React.Component {
     super(props)
 
     props.activityData.setVisitor(this)
-    this.state = { activityData: props.activityData, sessions: [] }
+    this.state = { sessions: [] }
   }
 
   /** the object render function */
@@ -120,4 +121,9 @@ class DailyActivity extends React.Component {
     )
   }
 }
+
+DailyActivity.propTypes = {
+  sessions: PropTypes.array,
+}
+
 export default DailyActivity

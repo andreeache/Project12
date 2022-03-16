@@ -1,21 +1,22 @@
-import "../styles/Header.css";
-import React from "react";
-
+import "../styles/Header.css"
+import PropTypes from "prop-types"
+import React from "react"
+import FetchUserData from "../Data/FetchUserData"
 
 /**
  * A class for the Dashboard header
- * 
+ *
  */
 class Header extends React.Component {
   constructor(props) {
-    super(props);
-    props.userData.setVisitor(this);
-    this.state = { userData: props.userData };
+    super(props)
+    props.userData.setVisitor(this)
+    this.state = { userData: props.userData }
   }
 
   /** the object render function */
   render() {
-    let userName = this.state.userData.getFirstName();
+    let userName = this.state.userData.getFirstName()
     return (
       <div>
         <div className="header">
@@ -27,7 +28,11 @@ class Header extends React.Component {
           </p>
         </div>
       </div>
-    );
+    )
   }
 }
-export default Header;
+
+Header.propTypes = {
+  userData: PropTypes.instanceOf(FetchUserData),
+}
+export default Header

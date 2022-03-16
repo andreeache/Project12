@@ -1,5 +1,7 @@
-import "../styles/PieChart.css";
-import React from "react";
+import "../styles/PieChart.css"
+import React from "react"
+import PropTypes from "prop-types"
+import FetchUserData from "../Data/FetchUserData"
 
 import {
   PieChart,
@@ -8,19 +10,19 @@ import {
   Label,
   Cell,
   ResponsiveContainer,
-} from "recharts";
+} from "recharts"
 
 /**
  * component for plotting the score chart
  */
 class PieChartGraph extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     // fix this so it doesn't point to the axios instance anymore
-    this.renderLabel = this.renderLabel.bind(this);
-    this.state = { userData: props.userData };
-    props.userData.setVisitor(this);
+    this.renderLabel = this.renderLabel.bind(this)
+    this.state = { userData: props.userData }
+    props.userData.setVisitor(this)
   }
 
   /**
@@ -29,8 +31,8 @@ class PieChartGraph extends React.Component {
    * @returns the rendered div
    */
   renderLabel(descriptor) {
-    const { cx, cy } = descriptor.viewBox;
-    const todayScore = this.state.userData.getTodayScore();
+    const { cx, cy } = descriptor.viewBox
+    const todayScore = this.state.userData.getTodayScore()
 
     return (
       <>
@@ -74,7 +76,7 @@ class PieChartGraph extends React.Component {
           </tspan>
         </text>
       </>
-    );
+    )
   }
 
   /**
@@ -86,7 +88,7 @@ class PieChartGraph extends React.Component {
     const todayScore = [
       { todayScore: this.state.userData.getTodayScore() },
       { todayScore: 1 - this.state.userData.getTodayScore() },
-    ];
+    ]
 
     return (
       <ResponsiveContainer width="30%" height="40%">
@@ -122,8 +124,12 @@ class PieChartGraph extends React.Component {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-    );
+    )
   }
 }
 
-export default PieChartGraph;
+PieChartGraph.propTypes = {
+  userData: PropTypes.instanceOf(FetchUserData),
+}
+
+export default PieChartGraph
